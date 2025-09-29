@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">imageview</string>
+    <string name="hello_android">hello_android</string>
+    <string name="button">button</string>
+</resources>

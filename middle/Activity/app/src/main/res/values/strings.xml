@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Activity</string>
+    <string name="mainactivity">mainactivity</string>
+    <string name="play">Play</string>
+    <string name="die">die</string>
+    <string name="play_activity">Play Activity</string>
+    <string name="over_activity">Over Activity</string>
+</resources>

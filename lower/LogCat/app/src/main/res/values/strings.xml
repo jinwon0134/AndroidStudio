@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LogCat</string>
+    <string name="hello_android">hello_android</string>
+    <string name="push">push</string>
+</resources>
