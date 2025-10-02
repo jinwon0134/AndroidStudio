@@ -17,20 +17,16 @@ public class TetrisView extends View {
 
     private static final int ROWS = 20;
     private static final int COLS = 10;
-
     private int[][] board = new int[ROWS][COLS];
     private int cellSize;
-
     private Block currentBlock;
     private int blockRow = 0, blockCol = 4;
-
     private Paint paint = new Paint();
     private Handler handler = new Handler();
     private int score = 0;
 
-    // 버튼 영역 제한선 높이
     private int controlLineY = 0;
-    private int controlsHeight = 200; // px, 필요시 dp->px 변환
+    private int controlsHeight = 200; // px
 
     private Runnable tick = new Runnable() {
         @Override
@@ -67,7 +63,8 @@ public class TetrisView extends View {
                 if (shape[r][c] != 0) {
                     int newRow = row + r;
                     int newCol = col + c;
-                    if (newRow < 0 || newRow >= ROWS || newCol < 0 || newCol >= COLS) return false;
+                    if (newRow < 0 || newRow >= ROWS || newCol < 0 || newCol >= COLS)
+                        return false;
                     if (board[newRow][newCol] != 0) return false;
                 }
             }
@@ -104,7 +101,7 @@ public class TetrisView extends View {
                     System.arraycopy(board[i - 1], 0, board[i], 0, COLS);
                 }
                 for (int c = 0; c < COLS; c++) board[0][c] = 0;
-                r++;
+                r++; // 다시 체크
             }
         }
     }
@@ -122,6 +119,7 @@ public class TetrisView extends View {
         board = new int[ROWS][COLS];
         score = 0;
         if (scoreChangeListener != null) scoreChangeListener.onScoreChange(score);
+        handler.removeCallbacks(tick); // 기존 tick 제거
         spawnBlock();
         handler.postDelayed(tick, 500);
         invalidate();
@@ -155,10 +153,8 @@ public class TetrisView extends View {
         for (int r = 0; r < shape.length; r++) {
             for (int c = 0; c < shape[r].length; c++) {
                 if (shape[r][c] != 0) {
-                    canvas.drawRect((blockCol + c) * cellSize,
-                            (blockRow + r) * cellSize,
-                            (blockCol + c + 1) * cellSize,
-                            (blockRow + r + 1) * cellSize, paint);
+                    canvas.drawRect((blockCol + c) * cellSize, (blockRow + r) * cellSize,
+                            (blockCol + c + 1) * cellSize, (blockRow + r + 1) * cellSize, paint);
                 }
             }
         }
@@ -196,18 +192,14 @@ public class TetrisView extends View {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                moveLeft();
-                break;
+                moveLeft(); break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                moveRight();
-                break;
+                moveRight(); break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                moveDownFast();
-                break;
+                moveDownFast(); break;
             case KeyEvent.KEYCODE_SPACE:
             case KeyEvent.KEYCODE_DPAD_UP:
-                rotateBlock();
-                break;
+                rotateBlock(); break;
         }
         return true;
     }
@@ -220,37 +212,28 @@ public class TetrisView extends View {
         this.gameOverListener = listener;
     }
 
-    public interface OnScoreChangeListener {
-        void onScoreChange(int score);
-    }
-
-    public interface OnGameOverListener {
-        void onGameOver();
-    }
+    public interface OnScoreChangeListener { void onScoreChange(int score); }
+    public interface OnGameOverListener { void onGameOver(); }
 
     // Block class
     private static class Block {
         int[][] shape;
         int color;
-
         private static final int[][][] SHAPES = {
                 {{1,1,1,1}}, {{1,1},{1,1}}, {{0,1,0},{1,1,1}},
                 {{1,1,0},{0,1,1}}, {{0,1,1},{1,1,0}}, {{1,0,0},{1,1,1}},
                 {{0,0,1},{1,1,1}}
         };
-
         private static final int[] COLORS = {
-                Color.CYAN, Color.YELLOW, Color.MAGENTA,
-                Color.GREEN, Color.RED, Color.BLUE, Color.rgb(255,165,0)
+                Color.CYAN, Color.YELLOW, Color.MAGENTA, Color.GREEN,
+                Color.RED, Color.BLUE, Color.rgb(255,165,0)
         };
-
         Block() {
             Random rand = new Random();
             int index = rand.nextInt(SHAPES.length);
             shape = SHAPES[index];
             color = COLORS[index];
         }
-
         int[][] rotate() {
             int m = shape.length;
             int n = shape[0].length;

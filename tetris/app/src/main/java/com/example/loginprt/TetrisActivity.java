@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TetrisActivity extends AppCompatActivity {
-
-    private Handler handler = new Handler(); // 드롭 반복용 핸들러
-    private Runnable dropRunnable;           // 반복 실행 Runnable
+    private TetrisView tetrisView;
+    private Handler handler = new Handler();
+    private Runnable dropRunnable;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -20,7 +20,7 @@ public class TetrisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tetris);
 
-        TetrisView tetrisView = findViewById(R.id.tetrisView);
+        tetrisView = findViewById(R.id.tetrisView);
         Button leftButton = findViewById(R.id.leftButton);
         Button rightButton = findViewById(R.id.rightButton);
         Button dropButton = findViewById(R.id.dropButton);
@@ -41,28 +41,30 @@ public class TetrisActivity extends AppCompatActivity {
         tetrisView.setOnScoreChangeListener(score -> scoreText.setText("Score: " + score));
 
         // 게임오버 리스너
-        tetrisView.setOnGameOverListener(() -> restartButton.setVisibility(Button.VISIBLE));
+        tetrisView.setOnGameOverListener(() -> {
+            restartButton.setVisibility(Button.VISIBLE);
+        });
 
-        // 드롭 버튼 꾹 누르기 기능
+        // 드롭 버튼 꾹 누르기
         dropRunnable = new Runnable() {
             @Override
             public void run() {
                 tetrisView.moveDownFast();
-                handler.postDelayed(this, 100); // 0.1초마다 반복
+                handler.postDelayed(this, 100);
             }
         };
 
         dropButton.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:   // 버튼 눌림
+                case MotionEvent.ACTION_DOWN:
                     handler.post(dropRunnable);
                     break;
-                case MotionEvent.ACTION_UP:     // 버튼 뗌
+                case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
                     handler.removeCallbacks(dropRunnable);
                     break;
             }
-            return true; // 터치 이벤트 소비
+            return true;
         });
     }
 }
