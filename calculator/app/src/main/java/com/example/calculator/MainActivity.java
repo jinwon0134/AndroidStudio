@@ -1,12 +1,9 @@
 package com.example.calculator;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     EditText et_expression;
     Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9;
     Button btn_plus, btn_minus, btn_multiply, btn_divide, btn_percent, btn_dot;
-    Button btn_clear, btn_equal;
+    Button btn_clear, btn_equal, btn_left_paren, btn_right_paren; // 추가
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +40,13 @@ public class MainActivity extends AppCompatActivity {
         btn_percent = findViewById(R.id.btn_percent);
         btn_dot = findViewById(R.id.btn_dot);
 
+        // 괄호 버튼 추가
+        btn_left_paren = findViewById(R.id.btn_left_paren);
+        btn_right_paren = findViewById(R.id.btn_right_paren);
+
         // 기능 버튼
         btn_clear = findViewById(R.id.btn_reset);
-        btn_equal = findViewById(R.id.btn_equal); // xml에서 추가 필요 (= 버튼)
+        btn_equal = findViewById(R.id.btn_equal);
 
         // 입력 처리
         setInput(btn_0, "0");
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         setInput(btn_multiply, "*");
         setInput(btn_divide, "/");
         setInput(btn_percent, "%");
+        setInput(btn_left_paren, "(");   // 추가
+        setInput(btn_right_paren, ")");  // 추가
 
         // C 버튼
         btn_clear.setOnClickListener(v -> et_expression.setText(""));
@@ -90,11 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 수식 계산
     private double evaluate(String expression) {
-        // 1) 중위표기식 → 후위표기식 변환
-        String postfix = infixToPostfix(expression);
-
-        // 2) 후위표기식 계산
-        return evalPostfix(postfix);
+        String postfix = infixToPostfix(expression); // 중위 -> 후위 변환
+        return evalPostfix(postfix); // 후위 계산
     }
 
     // 연산자 우선순위
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         return -1;
     }
 
-    // 중위 → 후위 변환 (Shunting-yard)
+    // ✅ 괄호 처리 추가된 중위 → 후위 변환
     private String infixToPostfix(String exp) {
         StringBuilder result = new StringBuilder();
         Stack<Character> stack = new Stack<>();
@@ -112,13 +112,22 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < exp.length(); i++) {
             char c = exp.charAt(i);
 
-            // 숫자일 경우
             if (Character.isDigit(c) || c == '.') {
                 result.append(c);
             }
-            // 연산자일 경우
-            else {
-                result.append(" "); // 숫자와 연산자 구분
+            else if (c == '(') {
+                stack.push(c);
+            }
+            else if (c == ')') {
+                result.append(" ");
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    result.append(stack.pop()).append(" ");
+                }
+                if (!stack.isEmpty() && stack.peek() == '(')
+                    stack.pop(); // '(' 제거
+            }
+            else { // 연산자
+                result.append(" ");
                 while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(c)) {
                     result.append(stack.pop()).append(" ");
                 }
@@ -126,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // 남은 연산자 처리
         while (!stack.isEmpty()) {
             result.append(" ").append(stack.pop());
         }
@@ -140,26 +148,18 @@ public class MainActivity extends AppCompatActivity {
         String[] tokens = exp.trim().split("\\s+");
 
         for (String token : tokens) {
-            if (token.matches("-?\\d+(\\.\\d+)?")) { // 숫자
+            if (token.matches("-?\\d+(\\.\\d+)?")) {
                 stack.push(Double.parseDouble(token));
-            } else { // 연산자
+            } else {
                 double b = stack.pop();
                 double a = stack.pop();
                 switch (token) {
-                    case "+":
-                        stack.push(a + b);
-                        break;
-                    case "-":
-                        stack.push(a - b);
-                        break;
-                    case "*":
-                        stack.push(a * b);
-                        break;
-                    case "/":
-                        stack.push(a / b);
-                        break;
+                    case "+": stack.push(a + b); break;
+                    case "-": stack.push(a - b); break;
+                    case "*": stack.push(a * b); break;
+                    case "/": stack.push(a / b); break;
+                    case "%": stack.push(a % b); break;
                 }
-
             }
         }
         return stack.pop();

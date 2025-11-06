@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -19,15 +19,14 @@
             android:id="@+id/et_expression"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
-            android:focusable="false"
+            android:layout_marginBottom="15dp"
             android:background="#E7E7E7"
-            android:padding="12dp"
+            android:focusable="false"
             android:hint="값을 입력하세요"
-            android:textSize="23sp"
-            />
+            android:inputType="none"
+            android:padding="12dp"
+            android:textSize="23sp" />
 
 
     </LinearLayout>
@@ -41,49 +40,48 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            >
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_1"
-                android:text="1"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="1"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_2"
-                android:text="2"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="2"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_3"
-                android:text="3"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
                 android:layout_marginEnd="15dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="3"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_plus"
-                android:text="+"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:backgroundTint="#57D5C5FF"
-                android:layout_weight="1"/>
+                android:text="+"
+                android:textSize="28sp" />
 
         </LinearLayout>
 
@@ -91,49 +89,48 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginBottom="8dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_4"
-                android:text="4"
                 android:layout_width="0dp"
-                android:textSize="28sp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
-                android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                />
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="4"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_5"
-                android:text="5"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="5"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_6"
-                android:text="6"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
                 android:layout_marginEnd="15dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="6"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_minus"
-                android:text="-"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:backgroundTint="#57D5C5FF"
-                android:layout_weight="1"/>
+                android:text="-"
+                android:textSize="28sp" />
 
         </LinearLayout>
 
@@ -141,135 +138,156 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginBottom="8dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_7"
                 android:layout_width="0dp"
-                android:textSize="28sp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
-                android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:text="7" />
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="7"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_8"
-                android:text="8"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="8"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_9"
-                android:text="9"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
                 android:layout_marginEnd="15dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="9"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_multiply"
-                android:text="*"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:backgroundTint="#57D5C5FF"
-                android:layout_weight="1"/>
+                android:text="*"
+                android:textSize="28sp" />
 
         </LinearLayout>
 
 
+
+
+        <!-- (중략) 상단 EditText, 숫자/연산 버튼 행들은 그대로 사용 -->
+        <!-- 4번째 행(.,0,%,/)은 그대로 유지 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginBottom="8dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_dot"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#1F56C5"
-                android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:text="." />
+                android:layout_weight="1"
+                android:backgroundTint="#1F56C5"
+                android:text="."
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_0"
-                android:text="0"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#74C7F4"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#74C7F4"
+                android:text="0"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_percent"
-                android:text="%"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="#1F56C5"
                 android:layout_marginEnd="15dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#1F56C5"
+                android:text="%"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/btn_slash"
-                android:text="/"
-                android:textSize="28sp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:backgroundTint="#57D5C5FF"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_reset"
-                android:text="초기화"
-                android:backgroundTint="#0F476D"
-                android:textSize="28sp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/btn_equal"
-                android:text="="
-                android:backgroundTint="#FF9800"
-                android:textSize="28sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="#57D5C5FF"
+                android:text="/"
+                android:textSize="28sp" />
+
+        </LinearLayout>
+
+        <!-- 새로운 행: 괄호 추가 (왼쪽괄호, 오른쪽괄호, 초기화, =) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_left_paren"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="#1F56C5"
+                android:text="("
+                android:textSize="28sp" />
+
+            <Button
+                android:id="@+id/btn_right_paren"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="#1F56C5"
+                android:text=")"
+                android:textSize="28sp" />
+
+            <Button
+                android:id="@+id/btn_reset"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="#0F476D"
+                android:text="초기화"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_equal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FF9800"
+                android:text="="
+                android:textSize="28sp"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
 
 
 
-
-
     </LinearLayout>
-
-
 
 
 </LinearLayout>
